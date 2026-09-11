@@ -1,0 +1,244 @@
+\# A Conditional GAN Framework for Spectrogram Generation in Aerial Threat Classification
+
+
+
+\## Overview
+
+
+
+This project presents a \*\*Conditional Generative Adversarial Network (cGAN)\*\* framework for generating synthetic radar spectrograms for aerial threat classification.
+
+
+
+The project addresses the challenge of limited radar spectrogram data by learning the characteristics of real radar micro-Doppler spectrograms and generating new, class-specific synthetic spectrograms.
+
+
+
+The generated synthetic data can be used to expand the dataset and support the development of deep learning models for aerial target classification.
+
+
+
+\---
+
+
+
+\## Objective
+
+
+
+The main objectives of this project are:
+
+
+
+\- To work with radar micro-Doppler spectrograms of aerial targets.
+
+\- To address limited training data using generative deep learning.
+
+\- To generate class-specific synthetic spectrograms using a Conditional GAN.
+
+\- To expand the available dataset with generated samples.
+
+\- To support downstream aerial target classification tasks.
+
+
+
+\---
+
+
+
+\## Dataset
+
+
+
+The project uses radar spectrogram data representing six aerial target classes:
+
+
+
+1\. `3\_long\_blade\_rotor`
+
+2\. `3\_short\_blade\_rotor`
+
+3\. `Bird`
+
+4\. `Bird+mini-helicopter`
+
+5\. `RC\_plane`
+
+6\. `drone`
+
+
+
+The dataset contains radar micro-Doppler spectrogram images representing different aerial targets.
+
+
+
+\---
+
+
+
+\## Data Preprocessing
+
+
+
+The spectrogram images are processed before being provided to the GAN.
+
+
+
+The preprocessing pipeline includes:
+
+
+
+\- Image resizing to \*\*224 × 224 pixels\*\*
+
+\- Normalization of image values to the range \*\*\[-1, 1]\*\*
+
+\- Assignment of class labels
+
+\- Data augmentation during training
+
+\- Batch processing with a batch size of \*\*32\*\*
+
+
+
+\---
+
+
+
+\## Conditional GAN Architecture
+
+
+
+The project uses a \*\*Conditional Generative Adversarial Network (cGAN)\*\* consisting of two main networks:
+
+
+
+\### Generator
+
+
+
+The generator creates synthetic radar spectrograms using:
+
+
+
+\- Random latent noise
+
+\- Class information
+
+
+
+A \*\*128-dimensional latent vector\*\* is used as the noise input.
+
+
+
+The class label is incorporated into the generator so that it can produce spectrograms corresponding to a desired aerial target class.
+
+
+
+\### Discriminator
+
+
+
+The discriminator receives:
+
+
+
+\- A radar spectrogram
+
+\- Corresponding class information
+
+
+
+Its purpose is to distinguish between real and generated spectrograms while considering the target class.
+
+
+
+The architecture also includes \*\*spectral normalization\*\* and \*\*residual blocks\*\* to improve the training process.
+
+
+
+\---
+
+
+
+\## Training
+
+
+
+The Conditional GAN is trained using:
+
+
+
+\- \*\*Optimizer:\*\* Adam
+
+\- \*\*Generator learning rate:\*\* `1e-4`
+
+\- \*\*Discriminator learning rate:\*\* `4e-5`
+
+\- \*\*Latent dimension:\*\* `128`
+
+\- \*\*Maximum epochs:\*\* `200`
+
+\- \*\*Batch size:\*\* `32`
+
+
+
+Data augmentation techniques such as random horizontal flipping, brightness adjustment, and contrast adjustment are applied during training.
+
+
+
+Generated samples are periodically visualized to monitor the training process.
+
+
+
+\---
+
+
+
+\## Synthetic Data Generation
+
+
+
+After training, the generator is used to create synthetic radar spectrograms for the different aerial target classes.
+
+
+
+The generated images are organized according to their class labels and can be used to expand the original dataset.
+
+
+
+\### Workflow
+
+
+
+```text
+
+Real Radar Spectrogram Dataset
+
+&#x20;           ↓
+
+&#x20;     Data Preprocessing
+
+&#x20;           ↓
+
+&#x20;     Class Conditioning
+
+&#x20;           ↓
+
+&#x20;     Conditional GAN
+
+&#x20;       ↙         ↘
+
+&#x20; Generator    Discriminator
+
+&#x20;       ↓
+
+Synthetic Radar Spectrograms
+
+&#x20;       ↓
+
+&#x20;  Expanded Dataset
+
+&#x20;       ↓
+
+Aerial Target Classification
+
