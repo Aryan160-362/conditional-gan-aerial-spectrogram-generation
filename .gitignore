@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Large datasets
+dataset/
+datasets/
+data/
+
+# Generated files
+generated/
+generated_images/
+results/
+
+# Trained models
+*.h5
+*.keras
+*.pth
+*.pt
+*.ckpt
+
+# ZIP files
+*.zip
+
+# System files
+.DS_Store
+Thumbs.db
