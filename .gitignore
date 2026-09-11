@@ -19,7 +19,7 @@ data/
 # Generated files
 generated/
 generated_images/
-results/
+
 
 # Trained models
 *.h5
